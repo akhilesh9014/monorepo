@@ -2,7 +2,7 @@ pipeline {
     agent none
     stages {
         stage ('Clone Check'){
-            script{
+            steps{
                 sh "ls -al"
             }
         }
