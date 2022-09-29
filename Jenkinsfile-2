@@ -1,2 +1,28 @@
 pipeline {
+    agent {
+        docker {
+            image 'node:16.13.1-alpine'
+            reuseNode true
+        }
+    }
+    stages {
+        stage ('backend') {
+            when {
+            changeset "backend/**"
+            }
+            steps {
+                echo " Backend service file had some changes"
+            }
+        }
+	  }
+    stages {
+        stage ('web') {
+            when {
+            changeset "web/**"
+            }
+            steps {
+                echo "web service file had some changes"
+            }
+        }
+	  }
 }
