@@ -4,11 +4,11 @@ pipeline {
         stage('Build Frontend') {
             agent { docker { image 'zenika/alpine-maven' } }
             when {
-                changeset "**/web/*.*"
+                changeset "**/backend/*.*"
                 beforeAgent true
             }
             steps {
-                dir('frontend') {
+                dir('backend') {
                   sh 'npm install'
                   sh '...'
                 }
@@ -17,11 +17,11 @@ pipeline {
         stage('Build Web') {
             agent { docker { image 'zenika/alpine-maven' } }
             when {
-                changeset "**/backend/*.*"
+                changeset "**/web/*.*"
                 beforeAgent true
             }
             steps {
-               dir ('backend/web') {
+               dir ('web') {
                 sh 'mvn -B -DskipTests clean package'
                 sh '...'
                }
