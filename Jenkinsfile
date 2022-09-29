@@ -2,7 +2,7 @@ pipeline {
     agent none
     stages {
         stage('Build Frontend') {
-            agent { docker { image 'my-node-agent' } }
+            agent { docker { image 'zenika/alpine-maven' } }
             when {
                 changeset "**/frontend/*.*"
                 beforeAgent true
@@ -15,7 +15,7 @@ pipeline {
             }
         }
         stage('Build Web') {
-            agent { docker { image 'my-maven-agent' } }
+            agent { docker { image 'zenika/alpine-maven' } }
             when {
                 changeset "**/backend/web/*.*"
                 beforeAgent true
@@ -28,7 +28,7 @@ pipeline {
             }
         }
         stage('Build REST API') {
-            agent { docker { image 'my-golang-agent' } }
+            agent { docker { image 'zenika/alpine-maven' } }
             when {
                 changeset "**/backend/api/*.*"
                 beforeAgent true
