@@ -4,7 +4,7 @@ pipeline {
         stage('Build Frontend') {
             agent { docker { image 'zenika/alpine-maven' } }
             when {
-                changeset "**/frontend/*.*"
+                changeset "**/web/*.*"
                 beforeAgent true
             }
             steps {
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Web') {
             agent { docker { image 'zenika/alpine-maven' } }
             when {
-                changeset "**/backend/web/*.*"
+                changeset "**/backend/*.*"
                 beforeAgent true
             }
             steps {
