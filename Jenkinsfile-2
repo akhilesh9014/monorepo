@@ -14,8 +14,6 @@ pipeline {
                 echo " Backend service file had some changes"
             }
         }
-    }
-    stages {
         stage ('web') {
             when {
             changeset "web/**"
