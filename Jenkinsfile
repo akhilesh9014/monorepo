@@ -4,7 +4,7 @@ pipeline {
         stage('Build Frontend') {
             agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
             when {
-                changeset "/backend/*.*"
+                changeset "backend/*.*"
                 beforeAgent true
             }
             steps {
@@ -14,7 +14,7 @@ pipeline {
         stage('Build Web') {
             agent { docker { image 'node:16.13.1-alpine' } }
             when {
-                changeset "/web/*.*"
+                changeset "web/*.*"
                 beforeAgent true
             }
             steps {
