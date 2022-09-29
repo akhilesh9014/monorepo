@@ -2,27 +2,23 @@ pipeline {
     agent none
     stages {
         stage('Build Frontend') {
+            agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
             when {
                 changeset "**/backend/*.*"
                 beforeAgent true
             }
             steps {
-                dir('backend') {
-                  sh 'npm install'
-                  sh '...'
-                }
+                sh 'mvn --version'
             }
         }
         stage('Build Web') {
+            agent { docker { image 'node:16.13.1-alpine' } }
             when {
                 changeset "**/web/*.*"
                 beforeAgent true
             }
             steps {
-               dir ('web') {
-                sh 'mvn -B -DskipTests clean package'
-                sh '...'
-               }
+                sh 'node --version'
             }
         }
     }
